@@ -1,0 +1,31 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 1.5rem;
+  color: #bbbb;
+
+  &__heading {
+    font-size: 1.2rem;
+  }
+
+  &__list {
+    display: flex;
+    list-style: none;
+    margin-right: auto;
+
+    &-item {
+      padding: 1rem;
+      font-size: 1.3rem;
+    }
+  }
+
+  &__search {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+      'Lucida Sans', Arial, sans-serif;
+    font-size: 1.3rem;
+  }
+}
+
+.divider {
+  border-bottom: 1px solid #bbbb;
+}
