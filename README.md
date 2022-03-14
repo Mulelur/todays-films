@@ -1,4 +1,4 @@
-# Expore movie app
+# Explore movie app
 
 ![move](https://user-images.githubusercontent.com/63222158/158114110-abf8c282-f9b7-456f-8137-5ac974022fab.png)
 
