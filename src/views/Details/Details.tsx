@@ -1,9 +1,16 @@
 import * as React from 'react';
-import ReactDOMServer from 'react-dom/server';
 import { useParams } from 'react-router-dom';
+import BackGround from '../../components/BackGround';
+import Notification from '../../components/common/feedBack/Notification';
+import Form from '../../components/Form';
+import Loading from '../../components/Loading';
+import NavBar from '../../components/NavBar';
+import { addAlpha } from '../../helper/hexToApha';
+import { renderColor } from '../../helper/renderColor';
 import { Movie } from '../../Interface/movies.interface';
 import { Get } from '../../services/service';
-import Browse from '../Browse';
+
+import './Details.scss';
 
 const Details = () => {
   const { id } = useParams<never>();
@@ -27,58 +34,68 @@ const Details = () => {
       });
   }, []);
 
-  // eslint-disable-next-line no-console
-  console.log(movies);
-
-  // eslint-disable-next-line unicorn/consistent-function-scoping
-  const openW = () => {
-    // const parameters = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
-    // width=400,height=400,left=-1000,top=-1000`;
-
-    // // eslint-disable-next-line no-restricted-globals
-    // open('/', 'test', parameters);
-
-    // eslint-disable-next-line no-restricted-globals
-    const newWindow = open('/', 'example', 'width=300,height=300');
-    newWindow?.focus();
-
-    // eslint-disable-next-line no-alert
-    alert(newWindow?.location.href); // (*) about:blank, loading hasn't started yet
-
-    newWindow?.addEventListener('load', () => {
-      const html = ReactDOMServer.renderToString(<Browse />);
-      newWindow?.document.body.insertAdjacentHTML('afterbegin', html);
-    });
-  };
-
-  // let newWindow = open('/', 'example', 'width=300,height=300');
-  // newWindow.focus();
-
-  // alert(newWindow.location.href); // (*) about:blank, loading hasn't started yet
-
-  // newWindow.onload = function () {
-  //   let html = `<div style="font-size:30px">Welcome!</div>`;
-  //   newWindow.document.body.insertAdjacentHTML('afterbegin', html);
-  // };
-
   return !loading ? (
-    <div>
-      {movies?.original_title}{' '}
-      <button
-        type="button"
-        onClick={() => {
-          openW();
-        }}
-      >
-        cll
-      </button>
-      <img
-        alt="igm"
-        src={`https://image.tmdb.org/t/p/w1000/${movies?.backdrop_path}`}
-      />
-    </div>
+    <BackGround
+      img={`https://image.tmdb.org/t/p/original/${movies?.backdrop_path}`}
+    >
+      <NavBar />
+      <div className="details">
+        <div className="details__col">
+          <div className="details__thumbnail">
+            <div
+              className="details__thumbnail-img"
+              style={{
+                background: `url(https://image.tmdb.org/t/p/original/${movies?.poster_path})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+              }}
+            />
+          </div>
+        </div>
+        <div className="details__col">
+          <div className="details__desc">
+            <div className="details__desc-title">
+              <h2 className="details__desc-heading">
+                {movies?.original_title}
+              </h2>
+              <span className="details__desc-title--release">
+                ({movies?.release_date.trim().slice(0, 4)})
+              </span>
+            </div>
+            <div>{movies?.tagline}</div>
+            <div
+              style={{
+                backgroundColor: addAlpha(renderColor(movies?.vote_count), 0.5),
+                borderBottom: `3px solid ${renderColor(movies?.vote_count)}`
+              }}
+              className="details__desc-rating"
+            >
+              Rating: <span>{movies?.vote_count}</span>
+            </div>
+            <div>
+              <div className="details__desc-heading">OverView</div>
+              <div>
+                <p>{movies?.overview}</p>
+              </div>
+            </div>
+            <div>
+              <div className="details__desc-heading">Genres</div>
+              <div className="details__genres">
+                {movies?.genres.map((g) => (
+                  <span className="details__genres-title">{g.name}</span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <Form />
+            </div>
+          </div>
+        </div>
+      </div>
+      <Notification />
+    </BackGround>
   ) : (
-    <h1>loading...</h1>
+    <Loading loading={loading} />
   );
 };
 

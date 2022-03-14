@@ -1,0 +1,36 @@
+.about {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 101.14px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &__heading {
+    font-size: 1.8rem;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__key {
+    font-size: 1.8rem;
+    padding: 0.3rem;
+    margin: 0.5rem;
+  }
+
+  &__value {
+    font-size: 1.3rem;
+  }
+}

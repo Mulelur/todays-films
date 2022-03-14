@@ -18,12 +18,14 @@ const Axios = () => {
 
 			return correct;
 		},
-		timeout: 180000,
+		timeout: 180_000,
 	});
 
 	return axiosInstance;
 };
 
-export const axiosObject = axios;
+
 
 export default Axios;
+
+export {default as axiosObject} from 'axios';

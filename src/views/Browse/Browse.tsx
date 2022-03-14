@@ -1,5 +1,9 @@
 import * as React from 'react';
 import { useHistory } from 'react-router-dom';
+import BackGround from '../../components/BackGround';
+import Loading from '../../components/Loading';
+import Movie from '../../components/Movie';
+import NavBar from '../../components/NavBar';
 import { Movies } from '../../Interface/movies.interface';
 import { Get } from '../../services/service';
 
@@ -67,33 +71,48 @@ const Browse = () => {
   }, [pageNumber]);
 
   return (
-    <div>
-      {movies?.map((item: Movies, index: number) =>
-        movies.length === index + 1 ? (
-          <div
-            onClick={() => history.push(`/details/:${item.id}`)}
-            onKeyPress={() => {}}
-            tabIndex={0}
-            role="button"
-            key={item.id}
-            ref={lastMovieReference}
-          >
-            {item.original_title}
-          </div>
-        ) : (
-          <div
-            onClick={() => history.push(`/details/${item.id}`)}
-            onKeyPress={() => {}}
-            tabIndex={0}
-            role="button"
-            key={item.id}
-          >
-            {item.original_title}
-          </div>
-        )
-      )}
-      {loading && <p>loading...</p>}
-    </div>
+    <BackGround color="#0F141E">
+      <NavBar />
+      <div className="browse">
+        {movies?.map((item: Movies, index: number) =>
+          movies.length === index + 1 ? (
+            <div
+              onClick={() => history.push(`/details/:${item.id}`)}
+              onKeyPress={() => {}}
+              tabIndex={index}
+              role="button"
+              key={item.id}
+              ref={lastMovieReference}
+            >
+              <Movie
+                img={`https://image.tmdb.org/t/p/original${item.poster_path}`}
+                title={item.original_title}
+                rating={item.vote_average}
+                avgRating={item.vote_count}
+                year={item.release_date}
+              />
+            </div>
+          ) : (
+            <div
+              onClick={() => history.push(`/details/${item.id}`)}
+              onKeyPress={() => {}}
+              tabIndex={index}
+              role="button"
+              key={item.id}
+            >
+              <Movie
+                img={`https://image.tmdb.org/t/p/original${item.poster_path}`}
+                title={item.original_title}
+                rating={item.vote_average}
+                avgRating={item.vote_count}
+                year={item.release_date}
+              />
+            </div>
+          )
+        )}
+        {loading && <Loading loading={loading} />}
+      </div>
+    </BackGround>
   );
 };
 

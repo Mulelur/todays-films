@@ -1,20 +1,28 @@
 import * as React from 'react';
-
-import img from '../../assets/ansel_elgort_rachel_zegler_4k_hd_west_side_story_2021.jpg';
+import { addAlpha } from '../../helper/hexToApha';
+import { randomColor } from '../../helper/rondomColor';
 
 import './BackGround.scss';
 
 type Properties = {
   children: React.ReactNode;
+  img?: string;
+  color?: string;
 };
 
 const BackGround = (properties: Properties) => {
-  const { children } = properties;
+  const { children, img, color } = properties;
   return (
     <div
       className="background"
       style={{
-        background: `url(${img})`,
+        background: img
+          ? `linear-gradient(#${addAlpha(randomColor(), 0.5)}, #${addAlpha(
+              randomColor(),
+              0.5
+            )}),
+    url(${img})`
+          : color /* Chrome 10-25, Safari 5.1-6 */,
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}
@@ -25,3 +33,8 @@ const BackGround = (properties: Properties) => {
 };
 
 export default BackGround;
+
+BackGround.defaultProps = {
+  img: undefined,
+  color: '#F6F7F7'
+};

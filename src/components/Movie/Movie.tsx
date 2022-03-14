@@ -1,15 +1,43 @@
 import * as React from 'react';
+import { renderColor } from '../../helper/renderColor';
 
-const Movie = () => (
-  <div>
-    <div>
-      <span>5.67</span>
+import './Movie.scss';
+
+type Properties = {
+  img: string;
+  title: string;
+  rating: number;
+  avgRating: number;
+  year: string;
+};
+
+const Movie = (properties: Properties) => {
+  const { img, title, rating, avgRating, year } = properties;
+  return (
+    <div className="movie">
+      <div
+        className="movie__thumbnail"
+        style={{
+          background: `url(${img})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      >
+        <div className="movie__sashes">
+          <span
+            style={{ backgroundColor: renderColor(avgRating) }}
+            className="movie__sashes-content"
+          >
+            {rating}
+          </span>
+        </div>
+      </div>
+      <div className="movie__detail">
+        <span className="movie__title">{title}</span>
+        <span>({year.trim().slice(0, 4)})</span>
+      </div>
     </div>
-    <div>
-      <p>name ...</p>
-      <p>R12 00 0000</p>
-    </div>
-  </div>
-);
+  );
+};
 
 export default Movie;

@@ -6,6 +6,7 @@ import {
   BrowserRouter as Router,
   Switch
 } from 'react-router-dom';
+import About from '../views/About';
 import Browse from '../views/Browse/Browse';
 import Details from '../views/Details';
 import Home from '../views/Home';
@@ -21,6 +22,7 @@ export default function Routes() {
         <Route path="/home" component={Home} />
         <Route path="/browse" exact component={Browse} />
         <Route path="/details/:id" exact component={Details} />
+        <Route path="/about" exact component={About} />
         <Route path="*" component={NotFound} />
       </Switch>
     </Router>

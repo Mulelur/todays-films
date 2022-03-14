@@ -56,7 +56,9 @@ module.exports = {
 	'unicorn/prefer-module': 'off',
 	'react/function-component-definition': 'off',
 	'react/destructuring-assignment': 'off',
-	'react/button-has-type': 'off'
+	'react/button-has-type': 'off',
+	'react/jsx-no-useless-fragment': 'off'
+	// 'unicorn/prevent-abbreviations': 'off'
   },
   overrides: [
 		{
