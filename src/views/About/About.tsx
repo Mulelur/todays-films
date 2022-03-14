@@ -24,7 +24,7 @@ const About = () => (
           </div>
           <div>
             <span className="about__key">Email</span>:{' '}
-            <a className="about__value" href="mail:to/rotondwamulelu@gmail.com">
+            <a className="about__value" href="mailto:rotondwamulelu@gmail.com">
               rotondwamulrlu@mgail.com
             </a>
           </div>
