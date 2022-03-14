@@ -4,9 +4,6 @@ import { Post, Update } from '../../services/service';
 
 import './Form.scss';
 
-// TODO set up Notifications
-// TODO set up Logs
-
 const notify = () =>
   toast('Movie Updated', {
     position: 'top-left',
