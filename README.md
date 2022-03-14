@@ -2,7 +2,7 @@
 
 ![move](https://user-images.githubusercontent.com/63222158/158114110-abf8c282-f9b7-456f-8137-5ac974022fab.png)
 
-A movie seach app that sarches all porpular films
+A movie seach app that searches all porpular films, post data to a third party API
 
 ## .env
 
